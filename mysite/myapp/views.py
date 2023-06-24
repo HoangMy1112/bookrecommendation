@@ -51,8 +51,8 @@ def register(request):
           user_form = UserRegistrationForm(request.POST)#get data from POST request
           new_user = user_form.save(commit=False) 
           #commit=False means we're not saving final data or not commit all POST data to db
-
-          #
           new_user.set_password(user_form.cleaned_data['password']) #access password field
+          new_user.save()
+          return redirect('index')
      user_form = UserRegistrationForm()
      return render(request, 'myapp/register.html',{'user_form': user_form}) #pass the form
