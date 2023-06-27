@@ -18,7 +18,9 @@ def create_product(request): #accept request
         product_form = ProductForm(request.POST, request.FILES) #get all the in4 in the form when user hit "POST"
         if product_form.is_valid(): #validate
             #if all is valid, save in4 from product form to db
-            new_product = product_form.save() 
+            new_product = product_form.save(commit=False) 
+            new_product.seller  = request.user
+            new_product.save()
             return redirect('index')
     product_form = ProductForm() #create an instnace
     
@@ -28,6 +30,9 @@ def create_product(request): #accept request
 
 def product_edit(request, id):
     product = Product.objects.get(id=id) #get the id of update bool
+    if product.seller != request.user:
+         return redirect('invalid')
+    
     product_form = ProductForm(request.POST or None, request.FILES or None, instance=product) #pass the instance of product
     if product_form.is_valid(): #validate
             #if all is valid, save in4 from product form to db
@@ -37,6 +42,8 @@ def product_edit(request, id):
 
 def product_delete(request, id):
     product = Product.objects.get(id=id) #get the id of delete book
+    if product.seller != request.user:
+         return redirect('invalid')
     if request.method == 'POST':
          product.delete()
          return redirect('index')
@@ -56,3 +63,6 @@ def register(request):
           return redirect('index')
      user_form = UserRegistrationForm()
      return render(request, 'myapp/register.html',{'user_form': user_form}) #pass the form
+
+def invalid(request):
+     return render(request, 'myapp/invalid.html')

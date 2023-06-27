@@ -23,4 +23,6 @@ urlpatterns = [
     path("login/", auth_view.LoginView.as_view(template_name='myapp/login.html'), name='login'), #present it into my app
 
     path("logout/", auth_view.LogoutView.as_view(template_name='myapp/logout.html'), name='logout'),
+
+    path("invalid/", views.invalid, name='invalid'),
 ]

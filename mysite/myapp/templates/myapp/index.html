@@ -1,6 +1,6 @@
 {% extends 'myapp/base.html' %}
 {% block body %}
-<div class="product-container flex">
+<div class="product-container flex flex-wrap items-center justify-center">
 {% for product in products %}
     <div class="product shadow-lg w-1/4 rounded-lg m-10">
         <div class="product-image">
@@ -12,6 +12,9 @@
             </div>
             <div>
                 {{ product.description }}
+            </div>
+            <div>
+                Create by: {{ product.seller }}
             </div>
             <div class="text-green-700 font-bold">
                 ${{ product.price }}
