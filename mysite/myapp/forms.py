@@ -1,6 +1,7 @@
 from django import forms
 from .models import Product
 from django.contrib.auth.models import User 
+# from .models import Comment
 
 #product form receive all in4 from product
 class ProductForm(forms.ModelForm): #this form is present in Django form
@@ -30,3 +31,14 @@ class UserRegistrationForm(forms.ModelForm):
     #The cleaned_data dictionary contains the field names as keys and the 
     #cleaned values as corresponding values. Use this when you want to customize fields
         
+
+# class CommentForm(forms.ModelForm):
+#     content = forms.CharField(widget=forms.Textarea(attrs={
+#         'class': 'md-textarea form-control',
+#         'placeholder': 'comment here ...',
+#         'rows': '4',
+#     }))
+
+#     class Meta:
+#         model = Comment
+#         fields = ('content', )

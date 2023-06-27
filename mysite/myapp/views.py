@@ -1,7 +1,8 @@
 from django.shortcuts import redirect, render
 #import Product model to shop up the product (models.py)
 from .models import Product
-from .forms import ProductForm, UserRegistrationForm#import class ProductForm in formd.py
+from .forms import ProductForm, UserRegistrationForm #import class ProductForm in formd.py
+# from .forms import ProductForm, CommentForm 
 
 # Create your views here.
 def index(request):

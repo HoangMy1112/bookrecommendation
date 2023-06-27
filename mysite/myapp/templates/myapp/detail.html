@@ -3,7 +3,7 @@
 <div class="flex p-10">
   <div>
     <img
-      src="{{ product.file}}"
+      src="{{ product.file.url }}"
       alt=""
     />
   </div>
@@ -11,6 +11,22 @@
     <div class="text-4xl mb-4">{{ product.name }}</div>
     <div class="mb-4">{{ product.description }}</div>
     <div class="mb-4 text-green-700 font-bold">${{ product.price }}</div>
+
+    <!-- <div class="media-list">
+        {% for comment in post_comments %}
+        <div>
+            <img class="avatar avatar-sm mr-4" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png">
+
+            <div class="media-body">
+                <div class="small-1">
+                    <b> {{comment.user}}</b>
+                    <time class="ml-4 opaciy-70 small-3"> {{comment.date}}</time>
+                </div>
+                <p> {{comment.content}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>  -->
     
   </div>
 </div>
