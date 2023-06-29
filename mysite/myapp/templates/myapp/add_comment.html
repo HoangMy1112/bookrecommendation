@@ -1,0 +1,20 @@
+{% extends 'myapp/base.html' %} 
+{% block body %}
+<div class="m-20 justify-center d-flex px-20">
+    <h1 class="font-bold text-lg items-center pb-5">Post Comment</h1>
+
+<form class="shadow-lg p-10 rounded" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+        <label>Name</label>
+        <div class="border rounded appearance-none py-2 px-2 mr-10">{{ comment_form.content }}</div>
+    </div>
+  
+    <div class="mt-6 ">
+        <button class="bg-green-500 text-white px-4 py-2 rounded" type="submit">Post</button>
+
+    </div>
+</form>
+</div>
+
+{% endblock %}

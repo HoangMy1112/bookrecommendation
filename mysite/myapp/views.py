@@ -1,8 +1,9 @@
 from django.shortcuts import redirect, render
 #import Product model to shop up the product (models.py)
-from .models import Product
+from .models import Product, Comment
 from .forms import ProductForm, UserRegistrationForm #import class ProductForm in formd.py
-# from .forms import ProductForm, CommentForm 
+from .forms import CommentForm 
+import pytz
 
 # Create your views here.
 def index(request):
@@ -67,3 +68,23 @@ def register(request):
 
 def invalid(request):
      return render(request, 'myapp/invalid.html')
+
+
+
+#add
+def add_comment(request, id):
+    product = Product.objects.get(id=id)
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.post = product  # Associate the comment with the product
+            new_comment.user = request.user  # Set the user to the current logged-in user
+            new_comment.save()  # Save the comment to the database
+            return render(request, 'myapp/detail.html', {'product': product})
+    else:
+        comment_form = CommentForm()
+    
+    return render(request, 'myapp/add_comment.html', {'comment_form': comment_form})
+ 
+ 

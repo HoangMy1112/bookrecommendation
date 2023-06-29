@@ -8,26 +8,37 @@
     />
   </div>
   <div class="pl-10">
-    <div class="text-4xl mb-4">{{ product.name }}</div>
+    <div class="text-2xl mb-4">{{ product.name }}</div>
     <div class="mb-4">{{ product.description }}</div>
     <div class="mb-4 text-green-700 font-bold">${{ product.price }}</div>
-
-    <!-- <div class="media-list">
-        {% for comment in post_comments %}
-        <div>
-            <img class="avatar avatar-sm mr-4" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png">
-
-            <div class="media-body">
-                <div class="small-1">
-                    <b> {{comment.user}}</b>
-                    <time class="ml-4 opaciy-70 small-3"> {{comment.date}}</time>
-                </div>
-                <p> {{comment.content}}</p>
-            </div>
-        </div>
-        {% endfor %}
-    </div>  -->
-    
   </div>
 </div>
+
+<div class="p-10 ml-5">
+    <hr>
+    <h2 class="text-xl mb-4 mt-6">Comments...</h2>
+    <br/>
+
+    <!-- product model connect the comment model -->
+    {% if not product.comments.all %}
+        No comments yet... 
+        <a href="{% url 'comment' product.id%}">Add One</a>
+    {% else %}
+    <a href="{% url 'comment' product.id%}">Add Comment</a>
+    <br/><br/>
+        {% for comment in product.comments.all %}
+            <div class="">
+                <strong class="px-2">{{comment.user}} - {{comment.dated}}</strong>
+                <br/>
+                {{ comment.content}}
+                <br/><br/>
+                
+            </div>
+        {% endfor %}
+    {% endif %}
+    <br>
+    <hr>
+
+</div>
+
 {% endblock %}

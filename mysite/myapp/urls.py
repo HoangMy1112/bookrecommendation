@@ -27,6 +27,8 @@ urlpatterns = [
     path("logout/", auth_view.LogoutView.as_view(template_name='myapp/logout.html'), name='logout'),
 
     path("invalid/", views.invalid, name='invalid'),
+
+    path("product/<int:id>/comment/", views.add_comment, name='comment'),
 ]
 
 if settings.DEBUG:
