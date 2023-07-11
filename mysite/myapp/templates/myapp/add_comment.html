@@ -3,11 +3,22 @@
 <div class="m-20 justify-center d-flex px-20">
     <h1 class="font-bold text-lg items-center pb-5">Post Comment</h1>
 
+
 <form class="shadow-lg p-10 rounded" method="post" enctype="multipart/form-data">
     {% csrf_token %}
+    
+    
+      
     <div>
         <label>Name</label>
         <div class="border rounded appearance-none py-2 px-2 mr-10">{{ comment_form.content }}</div>
+    </div>
+    <div class="star-rating">
+        <i class="far fa-star" data-rating="1"></i>
+        <i class="far fa-star" data-rating="2"></i>
+        <i class="far fa-star" data-rating="3"></i>
+        <i class="far fa-star" data-rating="4"></i>
+        <i class="far fa-star" data-rating="5"></i>
     </div>
   
     <div class="mt-6 ">
@@ -15,6 +26,51 @@
 
     </div>
 </form>
+
 </div>
+<script>
+    const stars = document.querySelectorAll('.star-rating i');
+    let clickedRating = 0;
+
+    function resetStars() {
+        stars.forEach((star) => {
+            star.classList.remove('fas');
+            star.classList.remove('clicked');
+            star.classList.add('far');
+        });
+    }
+
+    function fillStars(rating) {
+        stars.forEach((star) => {
+            const starRating = parseInt(star.getAttribute('data-rating'));
+
+            if (starRating <= rating) {
+                star.classList.remove('far');
+                star.classList.add('fas');
+                star.classList.add('clicked');
+            }
+        });
+    }
+
+    stars.forEach((star) => {
+        star.addEventListener('mouseover', function() {
+            const rating = parseInt(this.getAttribute('data-rating'));
+            resetStars();
+            fillStars(rating);
+        });
+
+        star.addEventListener('mouseout', function() {
+            if (clickedRating === 0) {
+                resetStars();
+            } else {
+                fillStars(clickedRating);
+            }
+        });
+
+        star.addEventListener('click', function() {
+            clickedRating = parseInt(this.getAttribute('data-rating'));
+        });
+    });
+</script>
 
 {% endblock %}
