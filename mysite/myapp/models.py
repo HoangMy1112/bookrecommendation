@@ -11,6 +11,8 @@ class Product(models.Model):
     description = models.CharField(max_length=100)
     price = models.FloatField()
     file = models.FileField(upload_to='uploads') #upload folder will automatic create
+    
+
 
     def __str__(self): #method to display name of product inside db
         return self.name
@@ -21,6 +23,7 @@ class Comment(models.Model):
     content = models.TextField()
     post = models.ForeignKey('Product', on_delete=models.CASCADE, related_name="comments")
     dated = models.DateTimeField(auto_now_add=True)
+    rating = models.IntegerField(default=0)
 
     # def save(self, *args, **kwargs):
     #     vietnam_tz = pytz.timezone('Asia/Ho_Chi_Minh')

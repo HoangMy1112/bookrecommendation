@@ -80,6 +80,7 @@ def add_comment(request, id):
             new_comment = comment_form.save(commit=False)
             new_comment.post = product  # Associate the comment with the product
             new_comment.user = request.user  # Set the user to the current logged-in user
+            new_comment.rating = int(request.POST.get('rating', 0))
             new_comment.save()  # Save the comment to the database
             return render(request, 'myapp/detail.html', {'product': product})
     else:
