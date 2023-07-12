@@ -19,26 +19,39 @@
     <h2 class="text-xl mb-4 mt-6">Comments...</h2>
     <br/>
 
-    <!-- product model connect the comment model -->
+    <!-- product model connects the comment model -->
     {% if not product.comments.all %}
         No comments yet... 
         <a href="{% url 'comment' product.id%}">Add One</a>
     {% else %}
     <a href="{% url 'comment' product.id%}">Add Comment</a>
     <br/><br/>
-        {% for comment in product.comments.all %}
-            <div class="">
-                <strong class="px-2">{{comment.user}} - {{comment.dated}}</strong>
-                <br/>
-                {{ comment.content}}
-                <br/><br/>
-                
-            </div>
-        {% endfor %}
     {% endif %}
+
+    <div class="comment-section">
+        {% for comment in product.comments.all %}
+            <div class="comment">
+                <div class="star-rating">
+                  {% for _ in comment.get_rating_range %}
+                      <i class="fas fa-star"></i>
+                  {% endfor %}
+                  {% for _ in comment.get_empty_star_range %}
+                      <i class="far fa-star"></i>
+                  {% endfor %}
+                </div>
+                <div class="comment-content">
+                    <strong class="px-2">{{comment.user}} - {{comment.dated}}</strong>
+                    <br/>
+                    {{ comment.content }}
+                </div>
+            </div>
+        {% empty %}
+            No comments yet.
+        {% endfor %}
+    </div>
+
     <br>
     <hr>
-
 </div>
 
 {% endblock %}

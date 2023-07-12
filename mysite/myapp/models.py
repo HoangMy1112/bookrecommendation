@@ -34,4 +34,10 @@ class Comment(models.Model):
     def __str__(self):
         return '%s - %s' % (self.post.name, self.user)
     
+    def get_rating_range(self):
+        return range(self.rating)
+
+    def get_empty_star_range(self):
+        return range(5 - self.rating)
+    
     
