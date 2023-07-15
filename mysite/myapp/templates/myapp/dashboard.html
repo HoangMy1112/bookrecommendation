@@ -1,10 +1,7 @@
 {% extends 'myapp/base.html' %} 
 {% block body %}
-    <div class="flex justify-between">
+    <div class="justify-between mt-10" style="padding-top: 2%;">
         <div class="ml-20 mt-10 font-bold text-xl">Discover Top</div>
-        <div class="ml-20 mt-10">
-            <a class="bg-green-500 text-white px-2 py-4 mr-8" href="{% url 'createproduct' %}">New Product</a>
-        </div>
     </div>
 
     <div class="products-container p-10 m-5">

@@ -9,20 +9,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <title>Document</title>
+    <style>
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #00438b, #8a2be2);
+            padding: 10px;
+            z-index: 9999; 
+        }
+    </style>
 </head>
 <body>
-    <nav class="shadow-lg">
+   
+    <nav class="shadow-lg navbar">
         <div class="flex flex-wrap justify-between ml5 items-center mx-aut px-4 py-2.5">
             <a href="{% url 'dashboard' %}" class="flex items-center">
-                <img class="h-6 mr-3" src="https://cdn0.iconfinder.com/data/icons/phosphor-duotone-vol-1/256/books-duotone-512.png" alt="">
-                <span class="self-center text-xml font-semibold">Digital Maket</span>
+                <img class="h-7 mr-3 stroke-current text-white" src="https://cdn4.iconfinder.com/data/icons/general-office/91/General_Office_17-512.png" alt="">
+                <span class="text-white self-center text-xml font-semibold">Digital Maket</span>
             </a>
             <div class="flex items-center">
-                <a href="{% url 'index' %}" class="mr-6 text-sm font-medium text-grey-500 text-2xl">Discover</a>
-                <a href="{% url 'createproduct' %}" class="mr-6 text-sm font-medium text-grey-500">Upload books</a>
-                <a href="{% url 'logout' %}" class="mr-6 text-sm font-medium text-grey-500">See chart</a>
-                <a href="{% url 'logout' %}" class="mr-6 text-sm font-medium text-grey-500">My favourite</a>
-                <a href="{% url 'logout' %}" class="mr-6 text-sm font-medium text-grey-500">Logout</a>
+                <a href="{% url 'index' %}" class="text-white mr-6 text-sm font-medium text-grey-500 text-2xl">Discover</a>
+                <a href="{% url 'createproduct' %}" class="text-white mr-6 text-sm font-medium text-grey-500">Upload books</a>
+                <a href="{% url 'logout' %}" class="text-white mr-6 text-sm font-medium text-grey-500">See chart</a>
+                <a href="{% url 'logout' %}" class="text-white mr-6 text-sm font-medium text-grey-500">My favourite</a>
+                <a href="{% url 'logout' %}" class="text-white mr-6 text-sm font-medium text-grey-500">Logout</a>
 
             </div>
         </div>

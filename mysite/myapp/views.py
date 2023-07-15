@@ -70,6 +70,10 @@ def invalid(request):
      return render(request, 'myapp/invalid.html')
 
 
+def invalid(request):
+     return render(request, 'myapp/invalid.html')
+
+
 
 #add
 def add_comment(request, id):
@@ -89,4 +93,24 @@ def add_comment(request, id):
     
     return render(request, 'myapp/add_comment.html', {'comment_form': comment_form})
  
- 
+
+def searchBook(request):
+     
+     if request.method == "POST":
+          searched = request.POST.get('searched')
+        #   products = Product.objects.filter(name__contains=searched)
+          if searched:
+                products = Product.objects.filter(name__contains=searched)
+          else:
+                products = Product.objects.all()  # Fetch all products if search query is not provided
+
+          return render(request, 'myapp/search.html', 
+                   {'searched': searched,
+                    'products': products})
+     else:
+          return render(request, 'myapp/search.html', 
+                   { })
+     
+     
+          
+     

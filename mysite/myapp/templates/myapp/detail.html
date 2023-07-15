@@ -1,6 +1,12 @@
 {% extends 'myapp/base.html' %} 
 {% block body %}
-<div class="flex p-10">
+<!-- <form class="d-flex">
+  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+  <button class="btn btn-outline-success" type="submit">Search</button>
+</form> -->
+
+
+<div class="flex p-10" style="padding-top: 7rem;">
   <div>
     <img
       src="{{ product.file.url }}"
@@ -44,6 +50,7 @@
                     <br/>
                     {{ comment.content }}
                 </div>
+                <br/>
             </div>
         {% empty %}
             No comments yet.

@@ -29,6 +29,8 @@ urlpatterns = [
     path("invalid/", views.invalid, name='invalid'),
 
     path("product/<int:id>/comment/", views.add_comment, name='comment'),
+
+    path("search", views.searchBook, name='search'),
 ]
 
 if settings.DEBUG:
