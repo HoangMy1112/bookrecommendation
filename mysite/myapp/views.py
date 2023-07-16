@@ -4,10 +4,15 @@ from .models import Product, Comment
 from .forms import ProductForm, UserRegistrationForm #import class ProductForm in formd.py
 from .forms import CommentForm 
 import pytz
+from django.shortcuts import render
+from django.db.models import Avg
 
 # Create your views here.
 def index(request):
     products = Product.objects.all() #product contains the list of all product we have
+   
+    # products = Product.objects.order_by('-rating')[:5]
+    
     return render(request, 'myapp/index.html', {'products': products}) #pass it as context to show product in html page
 
 #view details of product
@@ -52,7 +57,7 @@ def product_delete(request, id):
     return render(request, 'myapp/delete.html', {'product': product}) #pass product as context
 
 def dashboard(request):
-     products = Product.objects.all()
+     products = Product.objects.annotate(avg_rating=Avg('comments__rating')).order_by('-avg_rating')[:5]
      return render(request, 'myapp/dashboard.html', {'products': products})
 
 def register(request):

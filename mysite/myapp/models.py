@@ -16,6 +16,14 @@ class Product(models.Model):
 
     def __str__(self): #method to display name of product inside db
         return self.name
+    def rating(self):
+        comments = self.comments.all()
+        if comments:
+            total_rating = sum(comment.rating for comment in comments)
+            average_rating = total_rating / len(comments)
+            return round(average_rating, 1)
+        return 0.0
+
     
 
 class Comment(models.Model):

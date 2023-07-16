@@ -32,8 +32,14 @@
                 <div class="text-xs">Total orders</div>
             </div>
             <div class="pr-5">
-                <div class="text-2xl">4.8</div>
+                {% if product.rating %}
+                <div class="text-2xl"> {{ product.rating }}</div>
                 <div class="text-xs">Rating</div>
+                {% else %}
+                    <img class="w-6 h-6 ml-2" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/no-rating-614515.png" alt="No Comments">
+                    <div class="text-xs">No rating</div>
+                {% endif %}
+                
             </div>
         </div> 
            
