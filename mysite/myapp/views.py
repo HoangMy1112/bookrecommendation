@@ -6,6 +6,7 @@ from .forms import CommentForm
 import pytz
 from django.shortcuts import render
 from django.db.models import Avg
+from django.http import JsonResponse
 
 # Create your views here.
 def index(request):
@@ -116,6 +117,4 @@ def searchBook(request):
           return render(request, 'myapp/search.html', 
                    { })
      
-     
-          
-     
+

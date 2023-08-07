@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width={device-width}, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <title>Document</title>
@@ -19,6 +21,18 @@
             padding: 10px;
             z-index: 9999; 
         }
+        .product {
+            width: 240px; /* Set the desired width */
+            height: 600; /* Set the desired height */
+            }
+
+            /* Optional: Add some margin to space out the products */
+        .product-container {
+            margin-top: 2rem; /* Adjust the margin as needed */
+        }
+        .fas.fa-heart {
+        color: red;
+    }
     </style>
 </head>
 <body>
@@ -32,9 +46,14 @@
             <div class="flex items-center">
                 <a href="{% url 'index' %}" class="text-white mr-6 text-sm font-medium text-grey-500 text-2xl">Discover</a>
                 <a href="{% url 'createproduct' %}" class="text-white mr-6 text-sm font-medium text-grey-500">Upload books</a>
-                <a href="{% url 'logout' %}" class="text-white mr-6 text-sm font-medium text-grey-500">See chart</a>
-                <a href="{% url 'logout' %}" class="text-white mr-6 text-sm font-medium text-grey-500">My favourite</a>
+
+                {% if request.user.is_authenticated %}
+                <!-- User is logged in -->
                 <a href="{% url 'logout' %}" class="text-white mr-6 text-sm font-medium text-grey-500">Logout</a>
+                {% else %}
+                <!-- User is not logged in -->
+                <a href="{% url 'login' %}" class="text-white mr-6 text-sm font-medium text-grey-500">Login</a>
+                {% endif %}
 
             </div>
         </div>

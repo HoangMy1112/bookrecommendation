@@ -13,7 +13,6 @@ class Product(models.Model):
     file = models.FileField(upload_to='uploads') #upload folder will automatic create
     
 
-
     def __str__(self): #method to display name of product inside db
         return self.name
     def rating(self):
